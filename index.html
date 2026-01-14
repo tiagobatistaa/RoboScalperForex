@@ -3,27 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scalper Pro 1.10 - Robô de Trading Automático Premium</title>
-    <!-- Bootstrap 5 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <title>Scalper Black - Guia de Configuração</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <style>
         :root {
-            --primary-dark: #0a1128;
-            --primary-blue: #1a237e;
-            --accent-gold: #FFD700;
-            --accent-cyan: #00e5ff;
-            --accent-green: #00c853;
-            --accent-red: #ff5252;
-            --text-light: #ffffff;
-            --text-gray: #b0bec5;
-            --card-bg: rgba(20, 30, 60, 0.9);
-            --gradient-primary: linear-gradient(135deg, #0a1128 0%, #1a237e 100%);
-            --gradient-accent: linear-gradient(135deg, #FFD700 0%, #00e5ff 100%);
-            --gradient-gold: linear-gradient(135deg, #FFD700 0%, #FF6B00 100%);
+            --primary: #0d6efd;
+            --success: #198754;
+            --danger: #dc3545;
+            --warning: #ffc107;
+            --dark: #121212;
+            --darker: #0a0a0a;
+            --light: #f8f9fa;
+            --gray: #6c757d;
         }
         
         * {
@@ -33,1303 +25,1561 @@
         }
         
         body {
-            font-family: 'Roboto', sans-serif;
-            background-color: var(--primary-dark);
-            color: var(--text-light) !important;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(26, 35, 126, 0.3) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(0, 229, 255, 0.2) 0%, transparent 40%),
-                linear-gradient(to bottom, rgba(10, 17, 40, 0.9), rgba(10, 17, 40, 1));
-            min-height: 100vh;
-            overflow-x: hidden;
+            background-color: var(--dark);
+            color: var(--light);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            padding-top: 56px;
         }
         
-        /* FORÇAR TODAS AS CORES DE TEXTO PARA CLARO */
-        body,
-        h1, h2, h3, h4, h5, h6,
-        p, span, div,
-        .navbar-brand,
-        .nav-link,
-        .card,
-        .card-header,
-        .card-body,
-        .card-text,
-        .list-unstyled li,
-        .feature-list li,
-        .text-muted,
-        small,
-        .lead,
-        .btn,
-        .form-control,
-        .form-label,
-        .table,
-        .table th,
-        .table td {
-            color: var(--text-light) !important;
-        }
-        
-        .navbar-brand, h1, h2, h3, h4, h5, .navbar-brand {
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .navbar {
-            background: rgba(10, 17, 40, 0.98);
-            backdrop-filter: blur(15px);
-            border-bottom: 2px solid var(--accent-gold);
-            padding: 1rem 0;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-        }
-        
-        .hero-section {
-            background: var(--gradient-primary);
-            padding: 8rem 0 5rem;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero-section::before {
-            content: '';
-            position: absolute;
+        /* Header */
+        .main-header {
+            background: linear-gradient(135deg, var(--darker) 0%, #1a1a2e 100%);
+            border-bottom: 3px solid var(--primary);
+            position: fixed;
             top: 0;
-            left: 0;
             width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(circle at 70% 30%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 30% 70%, rgba(0, 229, 255, 0.1) 0%, transparent 50%);
+            z-index: 1000;
         }
         
-        .hero-title {
-            font-size: 4rem;
-            font-weight: 900;
-            background: var(--gradient-gold);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+        /* Cards */
+        .config-card {
+            background: rgba(40, 40, 40, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            transition: all 0.3s ease;
             margin-bottom: 1.5rem;
-            animation: glow 2s ease-in-out infinite alternate;
+            height: 100%;
         }
         
-        @keyframes glow {
-            from {
-                text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
-            }
-            to {
-                text-shadow: 0 0 20px rgba(255, 215, 0, 0.5), 0 0 30px rgba(255, 215, 0, 0.2);
-            }
+        .config-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 20px rgba(13, 110, 253, 0.1);
         }
         
-        .gold-text {
-            color: var(--accent-gold) !important;
+        .card-body {
+            padding: 1.5rem;
+        }
+        
+        /* Parameter Box */
+        .param-box {
+            background: rgba(13, 110, 253, 0.15);
+            border: 1px solid rgba(13, 110, 253, 0.4);
+            border-radius: 8px;
+            padding: 12px 15px;
+            margin: 10px 0;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 1rem;
+            color: #e0e0e0;
+            display: block;
+        }
+        
+        /* Steps */
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
             font-weight: bold;
+            margin-right: 12px;
+            flex-shrink: 0;
         }
         
-        .card {
-            background: var(--card-bg);
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            transition: all 0.4s ease;
+        /* Alerts */
+        .alert-custom {
+            background: rgba(255, 255, 255, 0.08);
+            border-left: 4px solid;
+            border-radius: 0 8px 8px 0;
+            padding: 15px;
+            margin: 15px 0;
+            color: #e0e0e0;
+            display: block;
+            clear: both;
+        }
+        
+        .alert-info {
+            border-left-color: var(--primary);
+            background: rgba(13, 110, 253, 0.15);
+        }
+        
+        .alert-success {
+            border-left-color: var(--success);
+            background: rgba(25, 135, 84, 0.15);
+        }
+        
+        .alert-warning {
+            border-left-color: var(--warning);
+            background: rgba(255, 193, 7, 0.15);
+        }
+        
+        .alert-danger {
+            border-left-color: var(--danger);
+            background: rgba(220, 53, 69, 0.15);
+        }
+        
+        /* Navigation */
+        .nav-pills .nav-link {
+            color: var(--light);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin: 5px 0;
+            border-radius: 8px;
+            background: rgba(40, 40, 40, 0.8);
+        }
+        
+        .nav-pills .nav-link.active {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+        
+        /* Tables */
+        .table-custom {
+            background: transparent;
+            color: var(--light);
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+        
+        .table-custom th {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.15);
+            font-weight: 600;
+            color: #e0e0e0;
+            padding: 0.75rem;
+        }
+        
+        .table-custom td {
+            border-color: rgba(255, 255, 255, 0.15);
+            vertical-align: middle;
+            color: #d0d0d0;
+            padding: 0.75rem;
+        }
+        
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+            .step-number {
+                width: 30px;
+                height: 30px;
+                font-size: 0.9rem;
+                margin-right: 10px;
+            }
+            
+            .config-card {
+                margin-bottom: 1rem;
+            }
+            
+            .card-body {
+                padding: 1rem;
+            }
+            
+            .display-5 {
+                font-size: 1.8rem;
+            }
+            
+            .lead {
+                font-size: 1rem;
+            }
+            
+            .param-box {
+                font-size: 0.95rem;
+                padding: 10px;
+            }
+            
+            .row.g-4 {
+                margin-left: -0.5rem;
+                margin-right: -0.5rem;
+            }
+            
+            .row.g-4 > [class*="col-"] {
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            body {
+                padding-top: 66px;
+            }
+            
+            .main-header {
+                padding: 10px 0;
+            }
+            
+            .config-card {
+                border-radius: 8px;
+                margin-bottom: 0.75rem;
+            }
+            
+            .card-body {
+                padding: 0.75rem;
+            }
+            
+            h2, h3, h4, h5, h6 {
+                word-wrap: break-word;
+            }
+        }
+        
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 70px;
+        }
+        
+        /* Icons */
+        .icon-container {
+            width: 50px;
+            height: 50px;
+            background: rgba(13, 110, 253, 0.15);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            border: 1px solid rgba(13, 110, 253, 0.3);
+            flex-shrink: 0;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 2rem 0;
+            margin-top: 3rem;
+            color: #e0e0e0;
+        }
+        
+        .footer h5, .footer p {
+            color: #e0e0e0;
+        }
+        
+        .footer .text-muted {
+            color: #b0b0b0 !important;
+        }
+        
+        /* Better text contrast */
+        .text-light-custom {
+            color: #f0f0f0 !important;
+        }
+        
+        .text-muted-custom {
+            color: #a0a0a0 !important;
+        }
+        
+        /* Section Titles */
+        .section-title {
+            color: #f0f0f0;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+            font-size: 1.75rem;
+        }
+        
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 1.5rem;
+                margin-bottom: 20px;
+            }
+        }
+        
+        /* Global TP Animation */
+        .tp-animation {
+            background: linear-gradient(90deg, rgba(13,110,253,0.1) 0%, rgba(25,135,84,0.1) 100%);
+            border: 1px solid rgba(25, 135, 84, 0.3);
+            border-radius: 10px;
+            padding: 20px;
             position: relative;
             overflow: hidden;
+            margin-bottom: 2rem;
+            display: block;
         }
         
-        .card::before {
+        .tp-animation::after {
             content: '';
             position: absolute;
             top: 0;
             left: -100%;
             width: 100%;
-            height: 2px;
-            background: var(--gradient-gold);
-            transition: left 0.4s ease;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: tp-flow 3s infinite;
         }
         
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(255, 215, 0, 0.15);
-            border-color: rgba(255, 215, 0, 0.4);
+        @keyframes tp-flow {
+            0% { left: -100%; }
+            100% { left: 100%; }
         }
         
-        .card:hover::before {
-            left: 0;
+        /* Form controls */
+        .form-control, .form-check-input {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.2);
+            color: var(--light);
         }
         
-        .card-header {
-            background: rgba(255, 215, 0, 0.08);
-            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 700;
-            padding: 1.2rem 1.5rem;
+        .form-control:focus {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: var(--primary);
+            color: var(--light);
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
         }
         
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            background: var(--gradient-gold);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .benefit-badge {
-            background: rgba(255, 215, 0, 0.1);
-            color: var(--accent-gold) !important;
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            border-radius: 25px;
-            padding: 0.5rem 1.2rem;
-            font-size: 0.9rem;
-            margin: 0.3rem;
-            display: inline-block;
-            transition: all 0.3s ease;
-        }
-        
-        .benefit-badge:hover {
-            background: rgba(255, 215, 0, 0.2);
-            transform: scale(1.05);
-        }
-        
-        .nav-link {
-            transition: all 0.3s ease;
-            font-weight: 500;
-            padding: 0.5rem 1rem;
-            margin: 0 0.2rem;
-            border-radius: 5px;
-        }
-        
-        .nav-link:hover, .nav-link.active {
-            color: var(--accent-gold) !important;
-            background: rgba(255, 215, 0, 0.1);
-        }
-        
-        .section-title {
-            position: relative;
-            padding-bottom: 1rem;
-            margin-bottom: 3rem;
-            font-size: 2.5rem;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 120px;
-            height: 4px;
-            background: var(--gradient-gold);
-            border-radius: 2px;
-        }
-        
-        .highlight-box {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(0, 229, 255, 0.1));
-            border-left: 4px solid var(--accent-gold);
-            padding: 1.5rem;
-            border-radius: 0 10px 10px 0;
-            margin: 1.5rem 0;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .profit-badge {
-            background: rgba(0, 200, 83, 0.2);
-            color: var(--accent-green) !important;
-            border: 1px solid var(--accent-green);
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-        }
-        
-        .risk-badge {
-            background: rgba(255, 82, 82, 0.2);
-            color: var(--accent-red) !important;
-            border: 1px solid var(--accent-red);
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-        }
-        
-        .cta-button {
-            background: var(--gradient-gold);
-            border: none;
-            color: #000 !important;
-            font-weight: 700;
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
-        }
-        
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
-            color: #000 !important;
-        }
-        
-        .testimonial-card {
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            border-radius: 15px;
-            padding: 2rem;
-            margin: 1rem;
-            background: rgba(20, 30, 60, 0.7);
-            position: relative;
-        }
-        
-        .testimonial-card::before {
-            content: '"';
-            position: absolute;
-            top: -15px;
-            left: 20px;
-            font-size: 4rem;
-            color: var(--accent-gold);
-            opacity: 0.3;
-            font-family: Georgia, serif;
-        }
-        
-        .stats-number {
-            font-size: 3rem;
-            font-weight: 900;
-            background: var(--gradient-gold);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            line-height: 1;
-        }
-        
-        .stats-label {
-            color: var(--text-gray) !important;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        footer {
-            background: rgba(10, 17, 40, 0.95);
-            border-top: 2px solid rgba(255, 215, 0, 0.2);
-            margin-top: 6rem;
-            padding: 3rem 0;
-            position: relative;
-        }
-        
-        footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background: var(--gradient-gold);
-        }
-        
-        .guarantee-badge {
-            background: rgba(255, 215, 0, 0.1);
-            border: 2px dashed var(--accent-gold);
+        /* Progress bars */
+        .progress {
+            background-color: rgba(255, 255, 255, 0.1);
+            height: 20px;
             border-radius: 10px;
-            padding: 1.5rem;
-            text-align: center;
-            margin: 2rem 0;
+            margin: 10px 0;
         }
         
-        .feature-list li {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            position: relative;
-            padding-left: 1.5rem;
+        .progress-bar {
+            background-color: var(--success);
+            border-radius: 10px;
         }
         
-        .feature-list li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--accent-gold);
-            font-weight: bold;
-        }
-        
-        .text-muted {
-            color: var(--text-gray) !important;
-        }
-        
-        .btn-outline-warning {
-            border-color: var(--accent-gold) !important;
-            color: var(--accent-gold) !important;
-        }
-        
-        .btn-outline-warning:hover {
-            background-color: rgba(255, 215, 0, 0.1) !important;
-            color: var(--accent-gold) !important;
-        }
-        
-        .form-control {
-            background-color: rgba(255, 255, 255, 0.1) !important;
-            border-color: rgba(255, 215, 0, 0.3) !important;
-            color: var(--text-light) !important;
-        }
-        
-        .form-control::placeholder {
-            color: rgba(255, 255, 255, 0.5) !important;
-        }
-        
-        .table {
-            background-color: transparent !important;
-        }
-        
-        .table th {
-            background-color: rgba(255, 215, 0, 0.1) !important;
-            border-color: rgba(255, 215, 0, 0.2) !important;
-        }
-        
-        .table td {
-            border-color: rgba(255, 215, 0, 0.1) !important;
-        }
-        
-        .alert {
-            background-color: rgba(255, 215, 0, 0.1) !important;
-            border-color: rgba(255, 215, 0, 0.3) !important;
-            color: var(--text-light) !important;
-        }
-        
-        .list-group-item {
-            background-color: transparent !important;
-            border-color: rgba(255, 215, 0, 0.2) !important;
-        }
-        
-        .modal-content {
-            background-color: var(--card-bg) !important;
-            border: 1px solid rgba(255, 215, 0, 0.2) !important;
-        }
-        
-        .modal-header, .modal-footer {
-            border-color: rgba(255, 215, 0, 0.2) !important;
-        }
-        
-        .text-success {
-            color: var(--accent-green) !important;
-        }
-        
-        .text-warning {
-            color: var(--accent-gold) !important;
-        }
-        
-        .text-info {
-            color: var(--accent-cyan) !important;
-        }
-        
-        .text-danger {
-            color: var(--accent-red) !important;
-        }
-        
+        /* Badges */
         .badge {
-            color: var(--text-light) !important;
+            font-size: 0.85em;
+            padding: 0.35em 0.65em;
+            font-weight: 500;
         }
         
-        .bg-success {
-            background-color: rgba(0, 200, 83, 0.2) !important;
+        /* Grid fixes for mobile */
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-right: -15px;
+            margin-left: -15px;
         }
         
-        .bg-warning {
-            background-color: rgba(255, 215, 0, 0.2) !important;
+        .col-12, .col-md-6, .col-lg-6, .col-lg-8, .col-lg-4 {
+            position: relative;
+            width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
         }
         
-        .bg-info {
-            background-color: rgba(0, 229, 255, 0.2) !important;
+        /* Responsive images */
+        img, .mt5-screenshot {
+            max-width: 100%;
+            height: auto;
         }
         
-        .bg-danger {
-            background-color: rgba(255, 82, 82, 0.2) !important;
+        /* Button styles */
+        .btn-outline-light {
+            border-color: rgba(255, 255, 255, 0.3);
+            color: var(--light);
+        }
+        
+        .btn-outline-light:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: var(--light);
+        }
+        
+        /* Container adjustments */
+        .container {
+            max-width: 1200px;
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+        
+        @media (max-width: 576px) {
+            .container {
+                padding-right: 10px;
+                padding-left: 10px;
+            }
+        }
+        
+        /* Clear floats */
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+        
+        /* Responsive tables */
+        .table-responsive {
+            display: block;
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        /* Step by step containers */
+        .step-by-step .d-flex {
+            margin-bottom: 1rem;
+        }
+        
+        .step-by-step .step-number.small {
+            width: 28px;
+            height: 28px;
+            font-size: 0.8rem;
+        }
+        
+        /* Flex utilities for mobile */
+        .d-flex-mobile {
+            display: flex !important;
+        }
+        
+        .flex-column-mobile {
+            flex-direction: column !important;
         }
         
         @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2.5rem;
+            .d-flex-mobile {
+                flex-direction: column;
             }
             
-            .hero-section {
-                padding: 6rem 0 3rem;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-            
-            .stats-number {
-                font-size: 2.5rem;
+            .icon-container {
+                margin-right: 0;
+                margin-bottom: 10px;
             }
         }
     </style>
 </head>
-<body data-bs-spy="scroll" data-bs-target="#navbar-main" data-bs-offset="100">
-    <!-- Navbar -->
-    <nav id="navbar-main" class="navbar navbar-expand-lg navbar-dark fixed-top">
+<body>
+    <!-- Header -->
+    <header class="main-header">
         <div class="container">
-            <a class="navbar-brand" href="#">
-                <i class="fas fa-robot me-2 gold-text"></i><span class="gold-text">SCALPER PRO 1.10</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#inicio">Início</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#beneficios">Benefícios</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#funcionamento">Como Funciona</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#configuracoes">Configurações</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#resultados">Resultados</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contato">Contato</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="inicio" class="hero-section">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-7">
-                    <h1 class="hero-title">SCALPER PRO 1.10</h1>
-                    <h2 class="h3 mb-4 gold-text">O Robô Mais Avançado com Filtros Inteligentes</h2>
-                    <p class="lead fs-4 mb-4">Operações com <span class="gold-text">proteção máxima</span>, <span class="gold-text">filtros de volatilidade</span> e <span class="gold-text">controle por pontos</span>.</p>
-                    
-                    <div class="d-flex flex-wrap gap-2 mb-5">
-                        <span class="benefit-badge"><i class="fas fa-shield-alt me-1"></i> Filtro Volatilidade</span>
-                        <span class="benefit-badge"><i class="fas fa-chart-line me-1"></i> Média Móvel 200</span>
-                        <span class="benefit-badge"><i class="fas fa-bolt me-1"></i> Stop por Pontos</span>
-                        <span class="benefit-badge"><i class="fas fa-filter me-1"></i> Filtro Spread</span>
-                        <span class="benefit-badge"><i class="fas fa-clock me-1"></i> Proteção Abertura</span>
-                    </div>
-                    
-                    <div class="d-flex flex-wrap gap-3">
-                        <a href="#configuracoes" class="cta-button">
-                            <i class="fas fa-play-circle me-2"></i>Ver Demonstração
-                        </a>
-                        <a href="#contato" class="btn btn-outline-warning btn-lg">
-                            <i class="fas fa-shopping-cart me-2"></i>Adquirir Agora
-                        </a>
-                    </div>
+            <div class="row align-items-center py-3">
+                <div class="col-8">
+                    <h1 class="h3 mb-0 text-light-custom">
+                        <i class="bi bi-lightning-charge-fill text-warning me-2"></i>
+                        Scalper Black
+                    </h1>
+                    <p class="text-muted-custom mb-0 small d-none d-md-block">Guia de Configuração do Sistema</p>
                 </div>
-                <div class="col-lg-5 text-center mt-5 mt-lg-0">
-                    <div class="card p-4" style="border: 2px solid var(--accent-gold); box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);">
-                        <div class="feature-icon">
-                            <i class="fas fa-chart-bar"></i>
-                        </div>
-                        <h4 class="mb-3"><span class="gold-text">VERSÃO PREMIUM 1.10</span></h4>
-                        <p class="text-muted">Build v1.10 - Sistema com filtros de volatilidade e spread</p>
-                        
-                        <div class="mt-4">
-                            <div class="d-flex justify-content-between align-items-center mb-3 p-2" style="background: rgba(255, 215, 0, 0.05); border-radius: 8px;">
-                                <span><i class="fas fa-check-circle text-success me-2"></i> Compra/Venda Opcional</span>
-                                <span class="profit-badge">ATIVO</span>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center mb-3 p-2" style="background: rgba(255, 215, 0, 0.05); border-radius: 8px;">
-                                <span><i class="fas fa-check-circle text-success me-2"></i> Filtros Avançados</span>
-                                <span class="profit-badge">ATIVO</span>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center p-2" style="background: rgba(255, 215, 0, 0.05); border-radius: 8px;">
-                                <span><i class="fas fa-check-circle text-success me-2"></i> Stop por Pontos</span>
-                                <span class="profit-badge">ATIVO</span>
-                            </div>
-                        </div>
-                        
-                        <div class="mt-4 pt-3 border-top border-warning">
-                            <p class="small text-muted mb-2"><i class="fas fa-clock me-1"></i> Dashboard em Tempo Real</p>
-                            <p class="small text-muted mb-2"><i class="fas fa-sync-alt me-1"></i> Atualizações Gratuitas</p>
-                            <p class="small text-muted"><i class="fas fa-headset me-1"></i> Suporte Especializado</p>
-                        </div>
-                    </div>
+                <div class="col-4 text-end">
+                    <button class="btn btn-outline-light btn-sm d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu">
+                        <i class="bi bi-list"></i>
+                    </button>
                 </div>
             </div>
         </div>
-    </section>
+    </header>
 
-    <!-- Benefícios Section -->
-    <section id="beneficios" class="py-5">
-        <div class="container">
-            <h2 class="section-title text-center mb-5">🚀 Novas Funcionalidades da Versão 1.10</h2>
+    <!-- Mobile Menu -->
+    <div class="offcanvas offcanvas-start d-md-none" tabindex="-1" id="mobileMenu">
+        <div class="offcanvas-header" style="background: var(--darker);">
+            <h5 class="offcanvas-title text-light-custom">
+                <i class="bi bi-robot text-warning"></i> Menu
+            </h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body" style="background: var(--dark);">
+            <div class="nav flex-column nav-pills">
+                <a class="nav-link active" href="#intro">
+                    <i class="bi bi-house me-2"></i> Introdução
+                </a>
+                <a class="nav-link" href="#basic-config">
+                    <i class="bi bi-sliders me-2"></i> Configurações Básicas
+                </a>
+                <a class="nav-link" href="#filters">
+                    <i class="bi bi-funnel me-2"></i> Sistema de Filtros
+                </a>
+                <a class="nav-link" href="#protections">
+                    <i class="bi bi-shield-check me-2"></i> Sistema de Proteções
+                </a>
+                <a class="nav-link" href="#tp-global">
+                    <i class="bi bi-calculator me-2"></i> Take Profit Global
+                </a>
+                <a class="nav-link" href="#risk-control">
+                    <i class="bi bi-exclamation-triangle me-2"></i> Controle de Risco
+                </a>
+                <a class="nav-link" href="#dashboard">
+                    <i class="bi bi-display me-2"></i> Dashboard
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container py-4">
+        <!-- Introduction -->
+        <section id="intro" class="mb-5">
+            <div class="row">
+                <div class="col-12">
+                    <div class="config-card">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-md-8">
+                                    <h2 class="mb-3 text-light-custom">
+                                        <i class="bi bi-robot text-warning"></i>
+                                        Sistema Scalper Black
+                                    </h2>
+                                    <p class="lead mb-4 text-light-custom">
+                                        Sistema automático de trading com múltiplas camadas de segurança e controle de risco avançado.
+                                    </p>
+                                    <div class="d-flex flex-wrap gap-2">
+                                        <span class="badge bg-primary">MetaTrader 5</span>
+                                        <span class="badge bg-success">Operação Automática</span>
+                                        <span class="badge bg-info">Multi-Ativos</span>
+                                        <span class="badge bg-warning text-dark">Timeframes M5/M15</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 text-center mt-4 mt-md-0">
+                                    <div class="border rounded p-3" style="background: rgba(255,255,255,0.05);">
+                                        <i class="bi bi-lightbulb text-warning display-4 mb-3"></i>
+                                        <p class="small mb-0 text-light-custom">
+                                            <strong>Dica:</strong> Comece no modo DEMO para se familiarizar
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Basic Configuration -->
+        <section id="basic-config" class="mb-5">
+            <h2 class="section-title">
+                <i class="bi bi-sliders"></i> Configurações Básicas
+            </h2>
             
+            <div class="alert-custom alert-info">
+                <i class="bi bi-info-circle me-2"></i>
+                Estas são as primeiras configurações que aparecem ao adicionar o robô no gráfico.
+            </div>
+
             <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="card h-100">
-                        <div class="card-header text-center">
-                            <h4 class="mb-0"><i class="fas fa-chart-line me-2 gold-text"></i> Filtros Inteligentes</h4>
-                        </div>
+                <!-- Volume Inicial -->
+                <div class="col-12 col-md-6">
+                    <div class="config-card">
                         <div class="card-body">
-                            <p class="card-text">Sistema de filtragem avançado com <span class="gold-text">proteção em tempo real</span> contra condições adversas de mercado.</p>
-                            <ul class="feature-list mt-3">
-                                <li>Filtro de Volatilidade (3x acima da média)</li>
-                                <li>Filtro de Spread Inteligente</li>
-                                <li>Proteção em Minutos de Abertura</li>
-                                <li>Média Móvel 200 Periódos</li>
-                                <li>Filtro de Maturidade do Candle</li>
-                            </ul>
+                            <div class="d-flex align-items-start mb-3">
+                                <div class="step-number">1</div>
+                                <div>
+                                    <h5 class="mb-2 text-light-custom">Volume inicial</h5>
+                                    <p class="text-muted-custom mb-0">Tamanho do lote para cada operação</p>
+                                </div>
+                            </div>
+                            
+                            <div class="param-box">
+                                Volume inicial = 0.01
+                            </div>
+                            
+                            <div class="mt-3">
+                                <p class="text-light-custom"><strong>O que significa?</strong></p>
+                                <p class="small text-light-custom">
+                                    Define quantos lotes o robô usará em cada operação. 
+                                    <strong>0.01 lot</strong> é ideal para contas pequenas.
+                                </p>
+                            </div>
+                            
+                            <div class="alert-custom alert-warning mt-3">
+                                <i class="bi bi-exclamation-triangle"></i>
+                                <strong>Importante:</strong> Nunca use mais do que 1-2% do seu capital por operação.
+                            </div>
                         </div>
                     </div>
                 </div>
-                
-                <div class="col-md-4">
-                    <div class="card h-100">
-                        <div class="card-header text-center">
-                            <h4 class="mb-0"><i class="fas fa-sliders-h me-2 gold-text"></i> Controle Total</h4>
-                        </div>
+
+                <!-- Take Profit -->
+                <div class="col-12 col-md-6">
+                    <div class="config-card">
                         <div class="card-body">
-                            <p class="card-text"><span class="gold-text">Personalização completa</span> do modo de operação e sistemas de proteção.</p>
-                            <ul class="feature-list mt-3">
-                                <li>Modo Compra e Venda ou apenas Compra</li>
-                                <li>Stop Loss por Pontos Configurável</li>
-                                <li>Trailing Stop Automático</li>
-                                <li>Take Profit Dinâmico</li>
-                                <li>Dashboard com Status em Tempo Real</li>
-                            </ul>
+                            <div class="d-flex align-items-start mb-3">
+                                <div class="step-number">2</div>
+                                <div>
+                                    <h5 class="mb-2 text-light-custom">Take Profit (pips)</h5>
+                                    <p class="text-muted-custom mb-0">Meta de lucro para cada operação</p>
+                                </div>
+                            </div>
+                            
+                            <div class="param-box">
+                                Take Profit = 100
+                            </div>
+                            
+                            <div class="mt-3">
+                                <p class="text-light-custom"><strong>Exemplo Prático:</strong></p>
+                                <p class="small text-light-custom">
+                                    Se você compra EURUSD a 1.10000 com Take Profit 100, 
+                                    fecha automaticamente em 1.10100 (100 pips acima).
+                                </p>
+                            </div>
+                            
+                            <div class="alert-custom alert-success mt-3">
+                                <i class="bi bi-check-circle"></i>
+                                <strong>Recomendação:</strong> 50-150 pips para operações de curto prazo
+                            </div>
                         </div>
                     </div>
                 </div>
-                
-                <div class="col-md-4">
-                    <div class="card h-100">
-                        <div class="card-header text-center">
-                            <h4 class="mb-0"><i class="fas fa-shield-alt me-2 gold-text"></i> Proteção Avançada</h4>
-                        </div>
+
+                <!-- Timeframes -->
+                <div class="col-12 col-md-6">
+                    <div class="config-card">
                         <div class="card-body">
-                            <p class="card-text">Sistemas de proteção que atuam <span class="gold-text">automaticamente</span> para preservar seu capital.</p>
-                            <ul class="feature-list mt-3">
-                                <li>25 Níveis de Proteção Automática</li>
-                                <li>Stop Gain/Loss em USC</li>
-                                <li>Bloqueio em Volatilidade Extrema</li>
-                                <li>Proteção Contra Spread Alto</li>
-                                <li>Alertas de Risco em Tempo Real</li>
-                            </ul>
+                            <div class="d-flex align-items-start mb-3">
+                                <div class="step-number">3</div>
+                                <div>
+                                    <h5 class="mb-2 text-light-custom">Timeframes Recomendados</h5>
+                                    <p class="text-muted-custom mb-0">Onde o sistema funciona melhor</p>
+                                </div>
+                            </div>
+                            
+                            <div class="row mt-3">
+                                <div class="col-6 text-center mb-3">
+                                    <div class="border rounded p-3 bg-dark">
+                                        <h3 class="text-success mb-1">M5</h3>
+                                        <small class="text-muted-custom">5 minutos</small>
+                                        <div class="badge bg-success mt-2">Recomendado</div>
+                                    </div>
+                                </div>
+                                <div class="col-6 text-center mb-3">
+                                    <div class="border rounded p-3 bg-dark">
+                                        <h3 class="text-primary mb-1">M15</h3>
+                                        <small class="text-muted-custom">15 minutos</small>
+                                        <div class="badge bg-primary mt-2">Ótimo</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <p class="small mt-2 text-light-custom">
+                                <i class="bi bi-info-circle"></i> Funciona em qualquer timeframe, mas M5 e M15 fornecem os melhores sinais.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modo de Operação -->
+                <div class="col-12 col-md-6">
+                    <div class="config-card">
+                        <div class="card-body">
+                            <div class="d-flex align-items-start mb-3">
+                                <div class="step-number">4</div>
+                                <div>
+                                    <h5 class="mb-2 text-light-custom">Modo de Operação</h5>
+                                    <p class="text-muted-custom mb-0">Direções que o sistema pode operar</p>
+                                </div>
+                            </div>
+                            
+                            <div class="param-box">
+                                Habilita operações de VENDA = true
+                            </div>
+                            
+                            <p class="mt-3 text-light-custom">
+                                <strong>Opções:</strong>
+                            </p>
+                            
+                            <div class="row g-2 mb-3">
+                                <div class="col-6">
+                                    <div class="border rounded p-2 text-center bg-dark">
+                                        <small class="text-success">Apenas COMPRAS</small>
+                                        <p class="small text-muted-custom mb-0">Mais conservador</p>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="border rounded p-2 text-center bg-dark">
+                                        <small class="text-primary">COMPRA e VENDA</small>
+                                        <p class="small text-muted-custom mb-0">Mais oportunidades</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="alert-custom alert-info mt-3">
+                                <i class="bi bi-lightbulb"></i>
+                                <strong>Dica:</strong> Comece apenas com compras até se familiarizar.
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </section>
+
+        <!-- Filters System -->
+        <section id="filters" class="mb-5">
+            <h2 class="section-title">
+                <i class="bi bi-funnel"></i> Sistema de Filtros
+            </h2>
             
-            <div class="highlight-box mt-5">
+            <div class="alert-custom alert-info mb-4">
+                <i class="bi bi-shield-check me-2"></i>
+                8 filtros de segurança devem ser atendidos simultaneamente para cada entrada.
+            </div>
+
+            <div class="row g-4">
+                <!-- Filtro 1 -->
+                <div class="col-12 col-lg-6">
+                    <div class="config-card">
+                        <div class="card-body">
+                            <div class="d-flex align-items-start mb-3">
+                                <div class="icon-container">
+                                    <i class="bi bi-clock-history text-primary"></i>
+                                </div>
+                                <div>
+                                    <h5 class="mb-1 text-light-custom">Filtro de maturidade do candle</h5>
+                                    <span class="badge bg-success">Ativado</span>
+                                </div>
+                            </div>
+                            
+                            <div class="param-box">
+                                Segundos para aguardar após novo candle = 40
+                            </div>
+                            
+                            <p class="mt-3 text-light-custom">
+                                <strong>Para que serve?</strong><br>
+                                Aguarda o candle atual completar 40 segundos antes de considerar entrada.
+                            </p>
+                            
+                            <div class="alert-custom alert-warning mt-3">
+                                <i class="bi bi-exclamation-triangle"></i>
+                                Evita entradas prematuras durante formações explosivas de candles.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filtro 2 -->
+                <div class="col-12 col-lg-6">
+                    <div class="config-card">
+                        <div class="card-body">
+                            <div class="d-flex align-items-start mb-3">
+                                <div class="icon-container">
+                                    <i class="bi bi-arrows-expand text-warning"></i>
+                                </div>
+                                <div>
+                                    <h5 class="mb-1 text-light-custom">Filtro range adaptativo</h5>
+                                    <span class="badge bg-success">Ativado</span>
+                                </div>
+                            </div>
+                            
+                            <div class="param-box">
+                                Ativar filtro range adaptativo = true
+                            </div>
+                            
+                            <p class="mt-3 text-light-custom">
+                                <strong>Como funciona:</strong><br>
+                                Analisa a volatilidade do mercado e só entra quando o preço está na zona ideal.
+                            </p>
+                            
+                            <div class="row g-2 mt-3">
+                                <div class="col-6">
+                                    <div class="border rounded p-2 text-center bg-dark">
+                                        <small>Período rápido: 9</small>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="border rounded p-2 text-center bg-dark">
+                                        <small>Período lento: 26</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filtro 3 -->
+                <div class="col-12 col-lg-6">
+                    <div class="config-card">
+                        <div class="card-body">
+                            <div class="d-flex align-items-start mb-3">
+                                <div class="icon-container">
+                                    <i class="bi bi-bar-chart text-success"></i>
+                                </div>
+                                <div>
+                                    <h5 class="mb-1 text-light-custom">Filtro de volume</h5>
+                                    <span class="badge bg-success">Ativado</span>
+                                </div>
+                            </div>
+                            
+                            <div class="param-box">
+                                Ativar filtro de volume = true
+                            </div>
+                            
+                            <p class="mt-3 text-light-custom">
+                                <strong>Para que serve?</strong><br>
+                                Verifica se há volume suficiente apoiando o movimento.
+                            </p>
+                            
+                            <div class="row g-2 mt-3">
+                                <div class="col-6">
+                                    <div class="border rounded p-2 text-center bg-dark">
+                                        <small class="text-success">Limiar compra: 55%</small>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="border rounded p-2 text-center bg-dark">
+                                        <small class="text-danger">Limiar venda: 55%</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filtro 4 -->
+                <div class="col-12 col-lg-6">
+                    <div class="config-card">
+                        <div class="card-body">
+                            <div class="d-flex align-items-start mb-3">
+                                <div class="icon-container">
+                                    <i class="bi bi-speedometer text-info"></i>
+                                </div>
+                                <div>
+                                    <h5 class="mb-1 text-light-custom">Filtro RSI</h5>
+                                    <span class="badge bg-success">Ativado</span>
+                                </div>
+                            </div>
+                            
+                            <div class="param-box">
+                                Ativar filtro RSI = true
+                            </div>
+                            
+                            <p class="mt-3 text-light-custom">
+                                <strong>Como funciona:</strong><br>
+                                Usa o indicador RSI para evitar entradas em zonas extremas.
+                            </p>
+                            
+                            <div class="row g-2 mt-3">
+                                <div class="col-4">
+                                    <div class="border rounded p-2 text-center bg-dark">
+                                        <small class="text-danger">56</small>
+                                        <div class="text-muted-custom" style="font-size: 0.7rem;">Sobrecompra</div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="border rounded p-2 text-center bg-dark">
+                                        <small>9</small>
+                                        <div class="text-muted-custom" style="font-size: 0.7rem;">Período</div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="border rounded p-2 text-center bg-dark">
+                                        <small class="text-success">42</small>
+                                        <div class="text-muted-custom" style="font-size: 0.7rem;">Sobrevenda</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filtros Adicionais -->
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="config-card">
+                        <div class="card-body">
+                            <h5 class="mb-3 text-light-custom">
+                                <i class="bi bi-plus-circle text-primary"></i>
+                                Filtros Adicionais de Segurança
+                            </h5>
+                            
+                            <div class="row g-3">
+                                <div class="col-6 col-md-3">
+                                    <div class="border rounded p-3 text-center h-100 bg-dark">
+                                        <i class="bi bi-activity text-danger mb-2 d-block"></i>
+                                        <h6 class="mb-1 text-light-custom">Volatilidade</h6>
+                                        <div class="param-box mt-2">
+                                            Ativar filtro de volatilidade = true
+                                        </div>
+                                        <p class="small mb-0 text-muted-custom mt-2">Bloqueia se > 2x média</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-6 col-md-3">
+                                    <div class="border rounded p-3 text-center h-100 bg-dark">
+                                        <i class="bi bi-arrow-left-right text-warning mb-2 d-block"></i>
+                                        <h6 class="mb-1 text-light-custom">Spread</h6>
+                                        <div class="param-box mt-2">
+                                            Ativar filtro de spread = true
+                                        </div>
+                                        <p class="small mb-0 text-muted-custom mt-2">Bloqueia se > 2x média</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-6 col-md-3">
+                                    <div class="border rounded p-3 text-center h-100 bg-dark">
+                                        <i class="bi bi-graph-up text-primary mb-2 d-block"></i>
+                                        <h6 class="mb-1 text-light-custom">Média Móvel 200</h6>
+                                        <div class="param-box mt-2">
+                                            Ativar filtro de média móvel 200 = true
+                                        </div>
+                                        <p class="small mb-0 text-muted-custom mt-2">Filtro de tendência</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-6 col-md-3">
+                                    <div class="border rounded p-3 text-center h-100 bg-dark">
+                                        <i class="bi bi-clock text-info mb-2 d-block"></i>
+                                        <h6 class="mb-1 text-light-custom">Filtro horário</h6>
+                                        <div class="param-box mt-2">
+                                            Ativar filtro horário = false
+                                        </div>
+                                        <p class="small mb-0 text-muted-custom mt-2">Filtro opcional</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sistema de Proteções -->
+        <section id="protections" class="mb-5">
+            <h2 class="section-title">
+                <i class="bi bi-shield-check"></i> Sistema de Proteções
+            </h2>
+            
+            <div class="alert-custom alert-info mb-4">
+                <i class="bi bi-exclamation-triangle me-2"></i>
+                Este sistema ajuda a gerenciar operações que estão em prejuízo temporário.
+            </div>
+
+            <div class="row g-4">
+                <div class="col-12 col-lg-8">
+                    <div class="config-card">
+                        <div class="card-body">
+                            <h5 class="mb-3 text-light-custom">
+                                <i class="bi bi-layers text-primary me-2"></i>
+                                Como funciona o sistema de proteções
+                            </h5>
+                            
+                            <p class="mb-4 text-light-custom">
+                                Quando uma operação vai contra a sua direção, o sistema automaticamente adiciona 
+                                novas operações em distâncias específicas para <strong>reduzir o preço médio</strong> 
+                                e facilitar a recuperação.
+                            </p>
+                            
+                            <div class="row">
+                                <div class="col-12 col-md-6 mb-3">
+                                    <div class="border rounded p-3 h-100 bg-dark">
+                                        <h6 class="text-success text-light-custom">
+                                            <i class="bi bi-check-circle"></i> Ativação
+                                        </h6>
+                                        <div class="param-box mt-2">
+                                            Ativar proteções = true
+                                        </div>
+                                        <p class="small mt-2 mb-0 text-light-custom">
+                                            Habilita/desabilita todo o sistema de proteções
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-12 col-md-6 mb-3">
+                                    <div class="border rounded p-3 h-100 bg-dark">
+                                        <h6 class="text-primary text-light-custom">
+                                            <i class="bi bi-123"></i> Quantidade
+                                        </h6>
+                                        <div class="param-box mt-2">
+                                            Quant. de proteções = 25
+                                        </div>
+                                        <p class="small mt-2 mb-0 text-light-custom">
+                                            Máximo de proteções que podem ser adicionadas
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="alert-custom alert-warning mt-3">
+                                <i class="bi bi-exclamation-triangle"></i>
+                                <strong>Atenção:</strong> Cada proteção adiciona mais volume à operação. 
+                                Certifique-se de ter capital suficiente.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-12 col-lg-4">
+                    <div class="config-card">
+                        <div class="card-body">
+                            <h5 class="mb-3 text-light-custom">
+                                <i class="bi bi-clock-history text-warning"></i>
+                                Configurações de Tempo
+                            </h5>
+                            
+                            <div class="param-box">
+                                Segundos entre proteções = 4
+                            </div>
+                            
+                            <p class="mt-3 text-light-custom">
+                                <strong>O que significa?</strong><br>
+                                Tempo mínimo de espera entre uma proteção e outra.
+                            </p>
+                            
+                            <div class="alert-custom alert-success mt-4">
+                                <i class="bi bi-shield-check"></i>
+                                Evita que múltiplas proteções sejam adicionadas muito rapidamente.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Protection Levels Table -->
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="config-card">
+                        <div class="card-body">
+                            <h5 class="mb-3 text-light-custom">
+                                <i class="bi bi-list-ol text-primary"></i>
+                                Níveis de Proteção Configurados
+                            </h5>
+                            
+                            <div class="table-responsive">
+                                <table class="table table-custom table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>Nível</th>
+                                            <th>Distância (pips)</th>
+                                            <th>Volume</th>
+                                            <th>Descrição</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><span class="badge bg-primary">1</span></td>
+                                            <td>900</td>
+                                            <td>0.01</td>
+                                            <td>Primeira proteção - leve</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="badge bg-success">4</span></td>
+                                            <td>4.100</td>
+                                            <td>0.01</td>
+                                            <td>Proteção média</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="badge bg-warning">8</span></td>
+                                            <td>6.800</td>
+                                            <td>0.08</td>
+                                            <td>Volume começa a aumentar</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="badge bg-danger">12</span></td>
+                                            <td>12.200</td>
+                                            <td>0.16</td>
+                                            <td>Proteção avançada</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="badge bg-dark">24</span></td>
+                                            <td>38.000</td>
+                                            <td>1.60</td>
+                                            <td>Última proteção disponível</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <p class="small mt-3 text-light-custom">
+                                <i class="bi bi-info-circle"></i> O sistema tem 24 níveis de proteção configurados, 
+                                cada um com distância e volume específicos.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Take Profit Global -->
+        <section id="tp-global" class="mb-5">
+            <h2 class="section-title">
+                <i class="bi bi-calculator text-success"></i> Sistema de Take Profit Global
+            </h2>
+            
+            <div class="tp-animation">
                 <div class="row align-items-center">
                     <div class="col-md-8">
-                        <h4 class="gold-text mb-3"><i class="fas fa-star me-2"></i> Sistema Otimizado</h4>
-                        <p class="mb-0">A versão 1.10 inclui <span class="gold-text">8 novos filtros de segurança</span> e <span class="gold-text">3 sistemas de proteção</span> adicionais. Opere com confiança em qualquer condição de mercado.</p>
+                        <h4 class="text-light-custom mb-3">
+                            <i class="bi bi-graph-up-arrow text-success"></i>
+                            O Poder do Take Profit Global
+                        </h4>
+                        <p class="text-light-custom mb-0">
+                            Este é um dos recursos mais inteligentes do Scalper Black. Conforme as proteções 
+                            são adicionadas, o sistema <strong>recalcula automaticamente</strong> o Take Profit 
+                            para todas as posições abertas, garantindo que você saia com lucro mesmo após 
+                            adicionar múltiplas proteções.
+                        </p>
                     </div>
-                    <div class="col-md-4 text-center text-md-end mt-3 mt-md-0">
-                        <a href="#configuracoes" class="cta-button">
-                            <i class="fas fa-cog me-2"></i>Ver Configurações
-                        </a>
+                    <div class="col-md-4 text-center">
+                        <i class="bi bi-arrow-repeat text-success display-1"></i>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Funcionamento Section -->
-    <section id="funcionamento" class="py-5" style="background: rgba(10, 17, 40, 0.7);">
-        <div class="container">
-            <h2 class="section-title text-center mb-5">⚡ Sistema de Filtragem Inteligente</h2>
-            
-            <div class="row mb-5">
-                <div class="col-lg-6">
-                    <div class="card h-100">
-                        <div class="card-header">
-                            <h4 class="mb-0"><span class="emoji">🛡️</span> Filtros de Proteção</h4>
-                        </div>
+            <div class="row g-4">
+                <div class="col-12 col-md-6">
+                    <div class="config-card">
                         <div class="card-body">
-                            <p>O robô analisa o mercado em tempo real aplicando <span class="gold-text">múltiplas camadas de proteção</span>:</p>
-                            <div class="mt-3">
-                                <div class="d-flex align-items-start mb-3">
-                                    <div class="me-3 gold-text">
-                                        <i class="fas fa-chart-bar fa-lg"></i>
-                                    </div>
+                            <h5 class="mb-3 text-light-custom">
+                                <i class="bi bi-arrow-clockwise text-primary"></i>
+                                Como Funciona o Cálculo
+                            </h5>
+                            
+                            <div class="step-by-step mb-4">
+                                <div class="d-flex mb-3">
+                                    <div class="step-number small">1</div>
                                     <div>
-                                        <h6 class="gold-text">Filtro de Volatilidade</h6>
-                                        <p class="small mb-0">Bloqueia entradas quando volatilidade > 3x média dos últimos 30min</p>
+                                        <h6 class="text-light-custom mb-1">Soma todos os preços de entrada</h6>
+                                        <p class="small text-muted-custom mb-0">
+                                            Calcula a média ponderada de todas as posições abertas
+                                        </p>
                                     </div>
                                 </div>
-                                <div class="d-flex align-items-start mb-3">
-                                    <div class="me-3 gold-text">
-                                        <i class="fas fa-exchange-alt fa-lg"></i>
-                                    </div>
+                                
+                                <div class="d-flex mb-3">
+                                    <div class="step-number small">2</div>
                                     <div>
-                                        <h6 class="gold-text">Filtro de Spread</h6>
-                                        <p class="small mb-0">Evita operar com spread > 3x média histórica</p>
+                                        <h6 class="text-light-custom mb-1">Adiciona o Take Profit configurado</h6>
+                                        <p class="small text-muted-custom mb-0">
+                                            Adiciona os pips de lucro definidos nas configurações básicas
+                                        </p>
                                     </div>
                                 </div>
-                                <div class="d-flex align-items-start">
-                                    <div class="me-3 gold-text">
-                                        <i class="fas fa-clock fa-lg"></i>
-                                    </div>
-                                    <div>
-                                        <h6 class="gold-text">Proteção de Abertura</h6>
-                                        <p class="small mb-0">Ignora os primeiros 5 minutos após abertura do mercado</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 mt-4 mt-lg-0">
-                    <div class="card h-100">
-                        <div class="card-header">
-                            <h4 class="mb-0"><span class="emoji">🎯</span> Filtros de Entrada</h4>
-                        </div>
-                        <div class="card-body">
-                            <p>Para cada operação, o sistema aplica <span class="gold-text">critérios rigorosos</span> de confirmação:</p>
-                            <div class="mt-3">
-                                <div class="d-flex align-items-start mb-3">
-                                    <div class="me-3 gold-text">
-                                        <i class="fas fa-chart-line fa-lg"></i>
-                                    </div>
-                                    <div>
-                                        <h6 class="gold-text">Média Móvel 200</h6>
-                                        <p class="small mb-0">Filtro configurável por período (padrão: 55)</p>
-                                    </div>
-                                </div>
-                                <div class="d-flex align-items-start mb-3">
-                                    <div class="me-3 gold-text">
-                                        <i class="fas fa-candle fa-lg"></i>
-                                    </div>
-                                    <div>
-                                        <h6 class="gold-text">Maturidade do Candle</h6>
-                                        <p class="small mb-0">Aguarda 30 segundos após formação do novo candle</p>
-                                    </div>
-                                </div>
-                                <div class="d-flex align-items-start">
-                                    <div class="me-3 gold-text">
-                                        <i class="fas fa-sliders-h fa-lg"></i>
-                                    </div>
-                                    <div>
-                                        <h6 class="gold-text">Modo de Operação</h6>
-                                        <p class="small mb-0">Escolha entre Compra e Venda ou apenas Compra</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="text-center">
-                <div class="card mx-auto" style="max-width: 800px; border: 2px solid var(--accent-cyan);">
-                    <div class="card-header" style="background: rgba(0, 229, 255, 0.1);">
-                        <h4 class="mb-0"><i class="fas fa-sitemap me-2 gold-text"></i> Fluxo de Decisão em Camadas</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="row text-center">
-                            <div class="col-md-3 mb-3">
-                                <div class="p-3 rounded" style="background: rgba(255, 215, 0, 0.1);">
-                                    <i class="fas fa-filter fa-2x mb-3 gold-text"></i>
-                                    <h6>Filtro 1</h6>
-                                    <p class="small mb-0">Volatilidade & Spread</p>
-                                </div>
-                            </div>
-                            <div class="col-md-3 mb-3">
-                                <div class="p-3 rounded" style="background: rgba(255, 215, 0, 0.1);">
-                                    <i class="fas fa-chart-line fa-2x mb-3 gold-text"></i>
-                                    <h6>Filtro 2</h6>
-                                    <p class="small mb-0">Tendência & MA200</p>
-                                </div>
-                            </div>
-                            <div class="col-md-3 mb-3">
-                                <div class="p-3 rounded" style="background: rgba(255, 215, 0, 0.1);">
-                                    <i class="fas fa-check-circle fa-2x mb-3 gold-text"></i>
-                                    <h6>Filtro 3</h6>
-                                    <p class="small mb-0">Confirmação Volume/RSI</p>
-                                </div>
-                            </div>
-                            <div class="col-md-3 mb-3">
-                                <div class="p-3 rounded" style="background: rgba(255, 215, 0, 0.1);">
-                                    <i class="fas fa-play fa-2x mb-3 gold-text"></i>
-                                    <h6>Execução</h6>
-                                    <p class="small mb-0">Entrada com Proteção</p>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="mt-3 small text-muted">Cada operação passa por 3 camadas de filtros antes da execução</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Configurações Section -->
-    <section id="configuracoes" class="py-5">
-        <div class="container">
-            <h2 class="section-title text-center mb-5">⚙️ Configurações Avançadas da Versão 1.10</h2>
-            <p class="lead text-center mb-5">Mais de <span class="gold-text">60 parâmetros ajustáveis</span> para personalização total do sistema.</p>
-            
-            <div class="row">
-                <div class="col-md-6 mb-4">
-                    <div class="card h-100">
-                        <div class="card-header">
-                            <h4 class="mb-0"><i class="fas fa-cogs me-2 gold-text"></i> Configurações Básicas</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="mb-4">
-                                <h6><i class="fas fa-exchange-alt me-2 gold-text"></i> Modo de Operação</h6>
-                                <p class="small">Escolha se quer operar apenas compras ou compras e vendas simultaneamente.</p>
-                                <div class="d-flex justify-content-between">
-                                    <span class="text-muted">Valor Padrão:</span>
-                                    <span class="profit-badge">Compra e Venda</span>
-                                </div>
-                            </div>
-                            
-                            <div class="mb-4">
-                                <h6><i class="fas fa-candle me-2 gold-text"></i> Filtro de Candle</h6>
-                                <p class="small">Aguarda maturidade do candle para evitar entradas prematuras.</p>
-                                <div class="d-flex justify-content-between">
-                                    <span class="text-muted">Tempo de Espera:</span>
-                                    <span class="gold-text">30 segundos</span>
-                                </div>
-                            </div>
-                            
-                            <div class="mb-4">
-                                <h6><i class="fas fa-chart-line me-2 gold-text"></i> Filtro MA200</h6>
-                                <p class="small">Ativa filtro da média móvel para aumentar probabilidade de acerto.</p>
-                                <div class="d-flex justify-content-between">
-                                    <span class="text-muted">Período:</span>
-                                    <span class="gold-text">55 períodos</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-md-6 mb-4">
-                    <div class="card h-100">
-                        <div class="card-header">
-                            <h4 class="mb-0"><i class="fas fa-shield-alt me-2 gold-text"></i> Sistema de Proteção</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="mb-4">
-                                <h6><i class="fas fa-layer-group me-2 gold-text"></i> Níveis de Proteção</h6>
-                                <p class="small">Até 25 níveis de proteção atuam automaticamente para gerenciar posições.</p>
-                                <div class="d-flex justify-content-between">
-                                    <span class="text-muted">Níveis Ativos:</span>
-                                    <span class="gold-text">25 níveis</span>
-                                </div>
-                            </div>
-                            
-                            <div class="mb-4">
-                                <h6><i class="fas fa-stop-circle me-2 gold-text"></i> Stop Gain Diário</h6>
-                                <p class="small">Para automaticamente ao atingir lucro diário configurado.</p>
-                                <div class="d-flex justify-content-between">
-                                    <span class="text-muted">Valor Padrão:</span>
-                                    <span class="gold-text">$100 (10000 USC)</span>
-                                </div>
-                            </div>
-                            
-                            <div class="mb-4">
-                                <h6><i class="fas fa-ban me-2 gold-text"></i> Stop Loss Diário</h6>
-                                <p class="small">Limite máximo de prejuízo diário para gestão de risco.</p>
-                                <div class="d-flex justify-content-between">
-                                    <span class="text-muted">Valor Padrão:</span>
-                                    <span class="gold-text">$75 (7500 USC)</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="row mt-4">
-                <div class="col-md-6 mb-4">
-                    <div class="card h-100">
-                        <div class="card-header">
-                            <h4 class="mb-0"><i class="fas fa-bolt me-2 gold-text"></i> Stop Loss por Pontos</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="mb-4">
-                                <h6><i class="fas fa-ruler me-2 gold-text"></i> Distância do Stop Loss</h6>
-                                <p class="small">Define a distância em pontos para o stop loss fixo.</p>
-                                <div class="d-flex justify-content-between">
-                                    <span class="text-muted">Valor Padrão:</span>
-                                    <span class="gold-text">100 pontos</span>
-                                </div>
-                            </div>
-                            
-                            <div class="mb-4">
-                                <h6><i class="fas fa-trailer me-2 gold-text"></i> Trailing Stop</h6>
-                                <p class="small">Ativa trailing stop que acompanha a operação em lucro.</p>
-                                <div class="d-flex justify-content-between">
-                                    <span class="text-muted">Status Padrão:</span>
-                                    <span class="risk-badge">DESATIVADO</span>
-                                </div>
-                            </div>
-                            
-                            <div class="mb-4">
-                                <h6><i class="fas fa-play-circle me-2 gold-text"></i> Início do Trailing</h6>
-                                <p class="small">Pontos de lucro necessários para iniciar o trailing stop.</p>
-                                <div class="d-flex justify-content-between">
-                                    <span class="text-muted">Valor Padrão:</span>
-                                    <span class="gold-text">50 pontos</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-md-6 mb-4">
-                    <div class="card h-100">
-                        <div class="card-header">
-                            <h4 class="mb-0"><i class="fas fa-filter me-2 gold-text"></i> Filtros Avançados</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="mb-4">
-                                <h6><i class="fas fa-chart-bar me-2 gold-text"></i> Filtro de Volatilidade</h6>
-                                <p class="small">Bloqueia operações quando volatilidade > 3x média dos últimos 30min.</p>
-                                <div class="d-flex justify-content-between">
-                                    <span class="text-muted">Status Padrão:</span>
-                                    <span class="profit-badge">ATIVADO</span>
-                                </div>
-                            </div>
-                            
-                            <div class="mb-4">
-                                <h6><i class="fas fa-exchange-alt me-2 gold-text"></i> Filtro de Spread</h6>
-                                <p class="small">Bloqueia operações quando spread > 3x média dos últimos 30min.</p>
-                                <div class="d-flex justify-content-between">
-                                    <span class="text-muted">Status Padrão:</span>
-                                    <span class="profit-badge">ATIVADO</span>
-                                </div>
-                            </div>
-                            
-                            <div class="mb-4">
-                                <h6><i class="fas fa-clock me-2 gold-text"></i> Proteção de Abertura</h6>
-                                <p class="small">Ignora os primeiros minutos após abertura do mercado.</p>
-                                <div class="d-flex justify-content-between">
-                                    <span class="text-muted">Minutos Ignorados:</span>
-                                    <span class="gold-text">5 minutos</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="row mt-4">
-                <div class="col-md-6 mb-4">
-                    <div class="card h-100">
-                        <div class="card-header">
-                            <h4 class="mb-0"><i class="fas fa-tachometer-alt me-2 gold-text"></i> Dashboard Premium</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="mb-4">
-                                <h6><i class="fas fa-eye me-2 gold-text"></i> Monitoramento em Tempo Real</h6>
-                                <p class="small">Visualize status dos filtros, volatilidade e spread atual.</p>
-                                <div class="d-flex justify-content-between">
-                                    <span class="text-muted">Status Padrão:</span>
-                                    <span class="profit-badge">ATIVADO</span>
-                                </div>
-                            </div>
-                            
-                            <div class="mb-4">
-                                <h6><i class="fas fa-chart-pie me-2 gold-text"></i> Estatísticas Detalhadas</h6>
-                                <p class="small">Acompanhe performance por período com métricas completas.</p>
-                                <div class="d-flex justify-content-between">
-                                    <span class="text-muted">Períodos:</span>
-                                    <span class="gold-text">Dia/Semana/Mês</span>
-                                </div>
-                            </div>
-                            
-                            <div class="mb-4">
-                                <h6><i class="fas fa-palette me-2 gold-text"></i> Personalização Visual</h6>
-                                <p class="small">Altere cores, transparência e posição do dashboard.</p>
-                                <div class="d-flex justify-content-between">
-                                    <span class="text-muted">Cores Disponíveis:</span>
-                                    <span class="gold-text">Totalmente Customizável</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-md-6 mb-4">
-                    <div class="card h-100">
-                        <div class="card-header">
-                            <h4 class="mb-0"><i class="fas fa-sliders-h me-2 gold-text"></i> Parâmetros Técnicos</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="mb-4">
-                                <h6><i class="fas fa-coins me-2 gold-text"></i> Volume de Operação</h6>
-                                <p class="small">Volume inicial de cada operação (padrão: 0.01 lote).</p>
-                                <div class="d-flex justify-content-between">
-                                    <span class="text-muted">Valor Padrão:</span>
-                                    <span class="gold-text">0.01 lote</span>
-                                </div>
-                            </div>
-                            
-                            <div class="mb-4">
-                                <h6><i class="fas fa-bullseye me-2 gold-text"></i> Take Profit</h6>
-                                <p class="small">Lucro alvo de cada operação em pontos.</p>
-                                <div class="d-flex justify-content-between">
-                                    <span class="text-muted">Valor Padrão:</span>
-                                    <span class="gold-text">25 pontos</span>
-                                </div>
-                            </div>
-                            
-                            <div class="mb-4">
-                                <h6><i class="fas fa-magic me-2 gold-text"></i> Magic Number</h6>
-                                <p class="small">Identificador único do robô para controle das operações.</p>
-                                <div class="d-flex justify-content-between">
-                                    <span class="text-muted">Valor Padrão:</span>
-                                    <span class="gold-text">979797</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Resultados Section -->
-    <section id="resultados" class="py-5" style="background: rgba(10, 17, 40, 0.7);">
-        <div class="container">
-            <h2 class="section-title text-center mb-5">📈 Resultados com Proteção Maximizada</h2>
-            
-            <div class="row text-center mb-5">
-                <div class="col-md-3 mb-4">
-                    <div class="p-4 card h-100">
-                        <div class="stats-number">85%</div>
-                        <div class="stats-label">Redução de Drawdown</div>
-                        <p class="small mt-2 text-muted">Com novos filtros de proteção</p>
-                    </div>
-                </div>
-                <div class="col-md-3 mb-4">
-                    <div class="p-4 card h-100">
-                        <div class="stats-number">92%</div>
-                        <div class="stats-label">Operações Protegidas</div>
-                        <p class="small mt-2 text-muted">Pelo sistema de filtros</p>
-                    </div>
-                </div>
-                <div class="col-md-3 mb-4">
-                    <div class="p-4 card h-100">
-                        <div class="stats-number">40%</div>
-                        <div class="stats-label">Mais Consistência</div>
-                        <p class="small mt-2 text-muted">Com controle por pontos</p>
-                    </div>
-                </div>
-                <div class="col-md-3 mb-4">
-                    <div class="p-4 card h-100">
-                        <div class="stats-number">600+</div>
-                        <div class="stats-label">Traders Ativos</div>
-                        <p class="small mt-2 text-muted">Clientes satisfeitos</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="guarantee-badge">
-                <h4 class="gold-text mb-3"><i class="fas fa-award me-2"></i> Garantia de Performance</h4>
-                <p class="mb-3">A versão 1.10 reduz em <span class="gold-text">85% os drawdowns</span> e aumenta a consistência em <span class="gold-text">40%</span>. Teste por 7 dias com garantia total de satisfação.</p>
-                <p class="small text-muted mb-0"><i class="fas fa-chart-line me-1"></i> Resultados baseados em backtesting de 6 meses</p>
-            </div>
-            
-            <div class="row mt-5">
-                <div class="col-lg-8 mx-auto">
-                    <div class="card">
-                        <div class="card-header text-center">
-                            <h4 class="mb-0"><i class="fas fa-comments me-2 gold-text"></i> Depoimentos da Versão 1.10</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="testimonial-card">
-                                <p class="mb-3">"Os novos filtros de volatilidade salvaram minha operação várias vezes. O sistema agora evita entradas em momentos de alta volatilidade, o que reduziu meus prejuízos em mais de 70%."</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div>
-                                        <strong class="gold-text">Roberto S.</strong>
-                                        <p class="small text-muted mb-0">Trader - 3 anos de experiência</p>
-                                    </div>
-                                    <div class="gold-text">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="testimonial-card mt-4">
-                                <p class="mb-3">"O controle por pontos com trailing stop mudou completamente minha gestão de risco. Agora consigo proteger meus lucros de forma automática enquanto deixo as operações correrem."</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div>
-                                        <strong class="gold-text">Fernanda L.</strong>
-                                        <p class="small text-muted mb-0">Trader Profissional</p>
-                                    </div>
-                                    <div class="gold-text">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contato/CTA Section -->
-    <section id="contato" class="py-5">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-8">
-                    <h2 class="mb-4">Pronto para Operar com Proteção Máxima?</h2>
-                    <p class="lead mb-4">A versão 1.10 do Scalper Pro inclui <span class="gold-text">8 novos sistemas de proteção</span> e <span class="gold-text">filtros inteligentes</span> que reduzem riscos em até 85%.</p>
-                    
-                    <div class="row mb-4">
-                        <div class="col-md-6">
-                            <div class="d-flex mb-3">
-                                <div class="me-3 gold-text">
-                                    <i class="fas fa-check-circle fa-lg"></i>
-                                </div>
-                                <div>
-                                    <h6 class="gold-text">Filtros de Volatilidade</h6>
-                                    <p class="small mb-0">Proteção automática contra mercados instáveis</p>
-                                </div>
-                            </div>
-                            <div class="d-flex mb-3">
-                                <div class="me-3 gold-text">
-                                    <i class="fas fa-check-circle fa-lg"></i>
-                                </div>
-                                <div>
-                                    <h6 class="gold-text">Controle por Pontos</h6>
-                                    <p class="small mb-0">Stop loss e trailing stop configuráveis</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="d-flex mb-3">
-                                <div class="me-3 gold-text">
-                                    <i class="fas fa-check-circle fa-lg"></i>
-                                </div>
-                                <div>
-                                    <h6 class="gold-text">Dashboard Avançado</h6>
-                                    <p class="small mb-0">Monitoramento em tempo real de todos os filtros</p>
-                                </div>
-                            </div>
-                            <div class="d-flex mb-3">
-                                <div class="me-3 gold-text">
-                                    <i class="fas fa-check-circle fa-lg"></i>
-                                </div>
-                                <div>
-                                    <h6 class="gold-text">Suporte Prioritário</h6>
-                                    <p class="small mb-0">Configuração personalizada para seu perfil</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-lg-4">
-                    <div class="card text-center" style="border: 2px solid var(--accent-gold); box-shadow: 0 0 40px rgba(255, 215, 0, 0.2);">
-                        <div class="card-header" style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(0, 229, 255, 0.1));">
-                            <h4 class="mb-0 gold-text">VERSÃO 1.10 COMPLETA</h4>
-                        </div>
-                        <div class="card-body">
-                            <h2 class="gold-text mb-3">R$ 1.197</h2>
-                            <p class="mb-4 text-muted">ou 12x de R$ 119,70</p>
-                            
-                            <div class="text-start mb-4">
-                                <div class="d-flex mb-2">
-                                    <i class="fas fa-check text-success me-2"></i>
-                                    <span>Todos os novos filtros</span>
-                                </div>
-                                <div class="d-flex mb-2">
-                                    <i class="fas fa-check text-success me-2"></i>
-                                    <span>Controle por pontos</span>
-                                </div>
-                                <div class="d-flex mb-2">
-                                    <i class="fas fa-check text-success me-2"></i>
-                                    <span>Dashboard premium</span>
-                                </div>
-                                <div class="d-flex mb-2">
-                                    <i class="fas fa-check text-success me-2"></i>
-                                    <span>Atualizações vitalícias</span>
-                                </div>
+                                
                                 <div class="d-flex">
-                                    <i class="fas fa-check text-success me-2"></i>
-                                    <span>Suporte 24/7</span>
+                                    <div class="step-number small">3</div>
+                                    <div>
+                                        <h6 class="text-light-custom mb-1">Aplica a todas as posições</h6>
+                                        <p class="small text-muted-custom mb-0">
+                                            Atualiza o Take Profit de todas as operações abertas
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                             
-                            <a href="#" class="cta-button w-100">
-                                <i class="fas fa-shopping-cart me-2"></i>Comprar Versão 1.10
-                            </a>
+                            <div class="alert-custom alert-success">
+                                <i class="bi bi-check-circle"></i>
+                                <strong>Resultado:</strong> Mesmo com várias proteções, você precisa de 
+                                menos pips de movimento para fechar todas as posições com lucro.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-12 col-md-6">
+                    <div class="config-card">
+                        <div class="card-body">
+                            <h5 class="mb-3 text-light-custom">
+                                <i class="bi bi-eye text-warning"></i>
+                                Visualização no Dashboard
+                            </h5>
                             
-                            <p class="small text-muted mt-3 mb-0">Upgrade gratuito para clientes da versão anterior</p>
+                            <p class="text-light-custom mb-4">
+                                No dashboard em tempo real, você pode acompanhar em que nível está o 
+                                Take Profit Global e quantos pips faltam para ser atingido.
+                            </p>
+                            
+                            <div class="border rounded p-3 mb-3 bg-dark">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <small class="text-muted-custom">Take Profit Global Atual</small>
+                                        <h4 class="text-success mb-0">1.10540</h4>
+                                    </div>
+                                    <div class="text-end">
+                                        <small class="text-muted-custom">Faltam</small>
+                                        <h4 class="text-warning mb-0">24 pips</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="progress mb-3">
+                                <div class="progress-bar bg-success" style="width: 65%">65%</div>
+                            </div>
+                            
+                            <p class="small text-light-custom">
+                                <i class="bi bi-info-circle"></i> A barra de progresso mostra o quanto falta 
+                                para atingir o Take Profit Global atual.
+                            </p>
+                            
+                            <div class="alert-custom alert-info mt-3">
+                                <i class="bi bi-lightbulb"></i>
+                                <strong>Dica:</strong> Quanto mais proteções adicionadas, mais o Take Profit 
+                                Global se aproxima do preço atual.
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+
+            <!-- Exemplo Prático -->
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="config-card">
+                        <div class="card-body">
+                            <h5 class="mb-3 text-light-custom">
+                                <i class="bi bi-calculator-fill text-primary"></i>
+                                Exemplo Prático do TP Global
+                            </h5>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="border rounded p-3 mb-3 bg-dark">
+                                        <h6 class="text-light-custom mb-3">Situação Inicial</h6>
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <span class="text-muted-custom">1ª Entrada:</span>
+                                            <span class="text-light-custom">0.01 lot @ 1.10000</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <span class="text-muted-custom">Take Profit Original:</span>
+                                            <span class="text-success">1.10100 (+100 pips)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <div class="border rounded p-3 mb-3 bg-dark">
+                                        <h6 class="text-light-custom mb-3">Após 2 Proteções</h6>
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <span class="text-muted-custom">Preço Médio:</span>
+                                            <span class="text-light-custom">1.09900</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <span class="text-muted-custom">Take Profit Global:</span>
+                                            <span class="text-success">1.10000 (+100 pips)</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <span class="text-muted-custom">Pips Necessários:</span>
+                                            <span class="text-warning">Apenas 100 pips</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="alert-custom alert-success mt-3">
+                                <i class="bi bi-check-circle"></i>
+                                <strong>Conclusão:</strong> Com o TP Global, mesmo após adicionar proteções, 
+                                você precisa de menos movimento do mercado para fechar todas as posições com lucro.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Risk Control -->
+        <section id="risk-control" class="mb-5">
+            <h2 class="section-title">
+                <i class="bi bi-exclamation-triangle text-warning"></i> Controle de Risco
+            </h2>
+            
+            <div class="row g-4">
+                <div class="col-12 col-lg-6">
+                    <div class="config-card">
+                        <div class="card-body">
+                            <h5 class="mb-3 text-light-custom">
+                                <i class="bi bi-currency-dollar text-success"></i>
+                                Stop Gain Diário
+                            </h5>
+                            
+                            <div class="param-box">
+                                Stop Gain (Ex: 100 = $1, 2000 = $20) = 1000
+                            </div>
+                            
+                            <p class="mt-3 text-light-custom">
+                                <strong>Como funciona?</strong><br>
+                                Para todas as operações quando atinge $10 de lucro no dia (1000 USC).
+                            </p>
+                            
+                            <div class="alert-custom alert-success mt-3">
+                                <i class="bi bi-trophy"></i>
+                                <strong>Benefício:</strong> Protege seus lucros e disciplina suas operações.
+                            </div>
+                            
+                            <p class="small text-muted-custom mt-3">
+                                <i class="bi bi-info-circle"></i>
+                                USC = "US Cents" (centavos de dólar). 100 USC = $1 USD.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-12 col-lg-6">
+                    <div class="config-card">
+                        <div class="card-body">
+                            <h5 class="mb-3 text-light-custom">
+                                <i class="bi bi-currency-dollar text-danger"></i>
+                                Stop Loss Diário
+                            </h5>
+                            
+                            <div class="param-box">
+                                Stop Loss (Ex: 100 = $1, 9000 = $90) = 9000
+                            </div>
+                            
+                            <p class="mt-3 text-light-custom">
+                                <strong>Como funciona?</strong><br>
+                                Para todas as operações quando atinge $90 de prejuízo no dia (9000 USC).
+                            </p>
+                            
+                            <div class="alert-custom alert-danger mt-3">
+                                <i class="bi bi-shield-exclamation"></i>
+                                <strong>Importante:</strong> Evita prejuízos grandes em um único dia.
+                            </div>
+                            
+                            <p class="small text-muted-custom mt-3">
+                                <i class="bi bi-info-circle"></i>
+                                Ajuste conforme seu capital e tolerância ao risco.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stop Loss por Pips -->
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="config-card">
+                        <div class="card-body">
+                            <h5 class="mb-3 text-light-custom">
+                                <i class="bi bi-sign-stop text-warning"></i>
+                                Stop Loss por Pips
+                            </h5>
+                            
+                            <div class="row g-3">
+                                <div class="col-12 col-md-4">
+                                    <div class="border rounded p-3 h-100 bg-dark">
+                                        <h6 class="text-primary text-light-custom">Ativação</h6>
+                                        <div class="param-box mt-2">
+                                            Ativar Stop Loss por pips = false
+                                        </div>
+                                        <p class="small mt-2 mb-0 text-light-custom">
+                                            Para iniciantes, mantenha desativado
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-12 col-md-4">
+                                    <div class="border rounded p-3 h-100 bg-dark">
+                                        <h6 class="text-success text-light-custom">Distância</h6>
+                                        <div class="param-box mt-2">
+                                            Distância em pips para o Stop Loss = 100
+                                        </div>
+                                        <p class="small mt-2 mb-0 text-light-custom">
+                                            Pips de distância do preço de entrada
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-12 col-md-4">
+                                    <div class="border rounded p-3 h-100 bg-dark">
+                                        <h6 class="text-warning text-light-custom">Trailing Stop</h6>
+                                        <div class="param-box mt-2">
+                                            Ativar Trailing Stop = false
+                                        </div>
+                                        <p class="small mt-2 mb-0 text-light-custom">
+                                            Stop loss que "segue" o preço
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="alert-custom alert-info mt-3">
+                                <i class="bi bi-lightbulb"></i>
+                                <strong>Recomendação para Iniciantes:</strong> Use apenas o Stop Loss diário 
+                                até se familiarizar com o sistema.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard -->
+        <section id="dashboard" class="mb-5">
+            <h2 class="section-title">
+                <i class="bi bi-display"></i> Dashboard em Tempo Real
+            </h2>
+            
+            <div class="row g-4">
+                <div class="col-12 col-lg-8">
+                    <div class="config-card">
+                        <div class="card-body">
+                            <div class="d-flex align-items-start mb-3">
+                                <div class="icon-container">
+                                    <i class="bi bi-speedometer2 text-primary"></i>
+                                </div>
+                                <div>
+                                    <h5 class="mb-1 text-light-custom">Painel de Controle em Tempo Real</h5>
+                                    <span class="badge bg-success">Recomendado</span>
+                                </div>
+                            </div>
+                            
+                            <p class="mb-4 text-light-custom">
+                                Mostra todas as informações importantes diretamente no gráfico do MetaTrader, 
+                                sem precisar abrir outras janelas.
+                            </p>
+                            
+                            <div class="row g-3">
+                                <div class="col-6 col-md-3">
+                                    <div class="border rounded p-2 text-center bg-dark">
+                                        <i class="bi bi-graph-up text-success d-block mb-1"></i>
+                                        <small class="text-light-custom">Lucro/Prejuízo</small>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-6 col-md-3">
+                                    <div class="border rounded p-2 text-center bg-dark">
+                                        <i class="bi bi-list-check text-primary d-block mb-1"></i>
+                                        <small class="text-light-custom">Estatísticas</small>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-6 col-md-3">
+                                    <div class="border rounded p-2 text-center bg-dark">
+                                        <i class="bi bi-shield-check text-warning d-block mb-1"></i>
+                                        <small class="text-light-custom">Status Filtros</small>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-6 col-md-3">
+                                    <div class="border rounded p-2 text-center bg-dark">
+                                        <i class="bi bi-clock-history text-info d-block mb-1"></i>
+                                        <small class="text-light-custom">TP Global</small>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="alert-custom alert-success mt-4">
+                                <i class="bi bi-check-circle"></i>
+                                <strong>Vantagem:</strong> Monitoramento completo em um só lugar - fácil e prático.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-12 col-lg-4">
+                    <div class="config-card">
+                        <div class="card-body">
+                            <h5 class="mb-3 text-light-custom">
+                                <i class="bi bi-gear text-warning"></i>
+                                Configurações do Dashboard
+                            </h5>
+                            
+                            <div class="mb-3">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="dashboardSwitch" checked>
+                                    <label class="form-check-label text-light-custom" for="dashboardSwitch">
+                                        Ativar dashboard
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="positionsSwitch" checked>
+                                    <label class="form-check-label text-light-custom" for="positionsSwitch">
+                                        Mostrar posições abertas
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-4">
+                                <h6 class="text-light-custom">Posicionamento</h6>
+                                <div class="row g-2">
+                                    <div class="col-6">
+                                        <input type="number" class="form-control form-control-sm bg-dark border-secondary text-light-custom" value="20" placeholder="Posição X">
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="number" class="form-control form-control-sm bg-dark border-secondary text-light-custom" value="50" placeholder="Posição Y">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <p class="small text-muted-custom mt-3">
+                                <i class="bi bi-arrows-move"></i>
+                                Pode ser movido para qualquer lugar no gráfico
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <!-- Footer -->
-    <footer>
+    <footer class="footer">
         <div class="container">
             <div class="row">
-                <div class="col-md-4 mb-4 mb-md-0">
-                    <h5 class="gold-text mb-3"><i class="fas fa-robot me-2"></i>SCALPER PRO 1.10</h5>
-                    <p>O robô de trading mais avançado do mercado, agora com filtros inteligentes de volatilidade e proteção por pontos.</p>
-                    <div class="d-flex mt-4">
-                        <a href="#" class="me-3 gold-text" style="font-size: 1.2rem;">
-                            <i class="fab fa-whatsapp"></i>
-                        </a>
-                        <a href="#" class="me-3 gold-text" style="font-size: 1.2rem;">
-                            <i class="fab fa-telegram"></i>
-                        </a>
-                        <a href="#" class="me-3 gold-text" style="font-size: 1.2rem;">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" class="gold-text" style="font-size: 1.2rem;">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                    </div>
+                <div class="col-12 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-light-custom">
+                        <i class="bi bi-lightning-charge-fill text-warning"></i>
+                        Scalper Black
+                    </h5>
+                    <p class="small text-muted-custom mb-0">
+                        Sistema automático de trading para MetaTrader 5<br>
+                        Versão 1.0 - Guia de Configuração
+                    </p>
                 </div>
-                <div class="col-md-2 mb-4 mb-md-0">
-                    <h6 class="gold-text mb-3">VERSÃO 1.10</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="#beneficios" class="text-decoration-none">Novas Funcionalidades</a></li>
-                        <li><a href="#funcionamento" class="text-decoration-none">Filtros Inteligentes</a></li>
-                        <li><a href="#configuracoes" class="text-decoration-none">Configurações</a></li>
-                        <li><a href="#resultados" class="text-decoration-none">Resultados</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-3 mb-4 mb-md-0">
-                    <h6 class="gold-text mb-3">SUPORTE</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="text-decoration-none">Configuração 1.10</a></li>
-                        <li><a href="#" class="text-decoration-none">Tutoriais dos Novos Filtros</a></li>
-                        <li><a href="#" class="text-decoration-none">FAQ Versão 1.10</a></li>
-                        <li><a href="#" class="text-decoration-none">Contato Técnico</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-3">
-                    <h6 class="gold-text mb-3">LEGAL</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="text-decoration-none">Termos de Uso 1.10</a></li>
-                        <li><a href="#" class="text-decoration-none">Política de Privacidade</a></li>
-                        <li><a href="#" class="text-decoration-none">Garantia Estendida</a></li>
-                        <li><a href="#" class="text-decoration-none">Upgrade Gratuito</a></li>
-                    </ul>
+                <div class="col-12 col-md-6 text-md-end">
+                    <p class="small text-muted-custom mb-0">
+                        <i class="bi bi-exclamation-triangle text-danger"></i>
+                        Aviso: Trading envolve riscos. Use apenas capital que possa perder.<br>
+                        Resultados passados não garantem resultados futuros.
+                    </p>
                 </div>
             </div>
-            <hr class="my-4" style="border-color: rgba(255, 215, 0, 0.2);">
-            <div class="text-center">
-                <p class="mb-2">© 2024 Scalper Pro 1.10 - Robô de Trading com Filtros Inteligentes. Todos os direitos reservados.</p>
-                <p class="small text-muted mb-0">
-                    <i class="fas fa-exclamation-triangle me-1"></i> 
-                    Trading envolve riscos significativos. Opere apenas com capital que você pode perder. Os novos filtros reduzem riscos mas não eliminam completamente.
-                </p>
+            <div class="row mt-4">
+                <div class="col-12 text-center">
+                    <p class="small text-muted-custom mb-0">
+                        © 2024 Scalper Black - Guia de Configuração para Clientes
+                    </p>
+                </div>
             </div>
         </div>
     </footer>
 
     <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('#navbar-main .nav-link');
-            
-            function onScroll() {
-                let scrollPos = window.scrollY + 100;
+            // Update active nav on scroll
+            window.addEventListener('scroll', function() {
+                const sections = document.querySelectorAll('section[id]');
+                const scrollPos = window.scrollY + 100;
                 
                 sections.forEach(section => {
                     const sectionTop = section.offsetTop;
                     const sectionHeight = section.clientHeight;
                     const sectionId = section.getAttribute('id');
                     
-                    if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-                        navLinks.forEach(link => {
+                    if(scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                        // Update desktop nav
+                        document.querySelectorAll('.nav-pills .nav-link').forEach(link => {
                             link.classList.remove('active');
-                            if (link.getAttribute('href') === '#' + sectionId) {
+                            if(link.getAttribute('href') === `#${sectionId}`) {
+                                link.classList.add('active');
+                            }
+                        });
+                        
+                        // Update mobile menu
+                        document.querySelectorAll('#mobileMenu .nav-link').forEach(link => {
+                            link.classList.remove('active');
+                            if(link.getAttribute('href') === `#${sectionId}`) {
                                 link.classList.add('active');
                             }
                         });
                     }
                 });
-            }
+            });
             
-            window.addEventListener('scroll', onScroll);
-            
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    if(targetId === '#') return;
-                    
-                    const targetElement = document.querySelector(targetId);
-                    if(targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
-                        
-                        navLinks.forEach(link => link.classList.remove('active'));
-                        this.classList.add('active');
-                    }
+            // Close mobile menu when clicking a link
+            document.querySelectorAll('#mobileMenu .nav-link').forEach(link => {
+                link.addEventListener('click', function() {
+                    const offcanvas = bootstrap.Offcanvas.getInstance(document.getElementById('mobileMenu'));
+                    offcanvas.hide();
                 });
             });
             
-            const heroTitle = document.querySelector('.hero-title');
-            const originalText = heroTitle.textContent;
-            heroTitle.textContent = '';
-            let i = 0;
-            
-            function typeWriter() {
-                if (i < originalText.length) {
-                    heroTitle.textContent += originalText.charAt(i);
-                    i++;
-                    setTimeout(typeWriter, 100);
-                }
-            }
-            
-            setTimeout(typeWriter, 500);
-            
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-            
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
+            // Switch functionality
+            document.querySelectorAll('.form-check-input').forEach(switchEl => {
+                switchEl.addEventListener('change', function() {
+                    const isChecked = this.checked;
+                    const label = this.nextElementSibling;
+                    
+                    if(label.textContent.includes('Ativar')) {
+                        label.textContent = isChecked ? 'Ativar dashboard' : 'Desativar dashboard';
+                    } else if(label.textContent.includes('Mostrar')) {
+                        label.textContent = isChecked ? 'Mostrar posições abertas' : 'Esconder posições abertas';
                     }
-                });
-            }, observerOptions);
-            
-            document.querySelectorAll('.card').forEach(card => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                observer.observe(card);
-            });
-            
-            // Adiciona animação para os badges de status
-            document.querySelectorAll('.profit-badge, .risk-badge').forEach(badge => {
-                badge.addEventListener('mouseenter', function() {
-                    this.style.transform = 'scale(1.1)';
-                });
-                badge.addEventListener('mouseleave', function() {
-                    this.style.transform = 'scale(1)';
                 });
             });
         });
